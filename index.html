@@ -4,39 +4,40 @@
 </head>
 <body>
   <canvas id="myCanvas"></canvas>
+  <script src="./gameOfLife.js"></script>
   <script>
-    var width = window.innerWidth;
-    var height = window.innerHeight;
-    var canvas = document.getElementById('myCanvas');
-    var context=canvas.getContext("2d");
-    canvas.width=width;
-    canvas.height=height;
-    console.log(width, height);
-    var NUM_CELL_ROWS = 10;
-    var NUM_CELL_COLS = 20;
-    var cellWidth = Math.floor(width/NUM_CELL_COLS);
-    var cellHeight = Math.floor(height/NUM_CELL_ROWS);
-
-    function checkerBoard(rows, cols, cellWidth, cellHeight){
-      context.fillStyle="#000000";
-      for(var i = 0; i < rows; i++){
-        for(var j = 0; j < cols; j++){
-          if((i%2 == 0 && j%2 == 1) || (i%2 == 1 && j%2 == 0)){
-            context.fillRect(cellWidth*i, cellHeight*j, cellWidth, cellHeight)
-          }
-        }
-      }
-    }
-    function updateCell(row, col, alive){
-      if(alive){
-        context.fillStyle="#FFFFFF";
-      }else{
-        context.fillStyle="#0000FF";
-      }
-      context.fillRect(cellWidth*i, cellHeight*j, cellWidth, cellHeight)
-    }
-
-    checkerBoard(NUM_CELL_ROWS, NUM_CELL_COLS, cellWidth, cellHeight);
+    // var width = window.innerWidth;
+    // var height = window.innerHeight;
+    // var canvas = document.getElementById('myCanvas');
+    // var context=canvas.getContext("2d");
+    // canvas.width=width;
+    // canvas.height=height;
+    // console.log(width, height);
+    // var NUM_CELL_ROWS = 10;
+    // var NUM_CELL_COLS = 20;
+    // var cellWidth = Math.floor(width/NUM_CELL_COLS);
+    // var cellHeight = Math.floor(height/NUM_CELL_ROWS);
+    //
+    // function checkerBoard(rows, cols, cellWidth, cellHeight){
+    //   context.fillStyle="#000000";
+    //   for(var i = 0; i < rows; i++){
+    //     for(var j = 0; j < cols; j++){
+    //       if((i%2 == 0 && j%2 == 1) || (i%2 == 1 && j%2 == 0)){
+    //         context.fillRect(cellWidth*j, cellHeight*i, cellWidth, cellHeight)
+    //       }
+    //     }
+    //   }
+    // }
+    // function updateCell(row, col, alive){
+    //   if(alive){
+    //     context.fillStyle="#FFFFFF";
+    //   }else{
+    //     context.fillStyle="#0000FF";
+    //   }
+    //   context.fillRect(cellWidth*i, cellHeight*j, cellWidth, cellHeight)
+    // }
+    //
+    // checkerBoard(NUM_CELL_ROWS, NUM_CELL_COLS, cellWidth, cellHeight);
 
   </script>
 </body>
