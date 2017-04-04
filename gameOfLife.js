@@ -5,9 +5,17 @@ var board = [[0,0,0,0,0],
               [0,0,0,0,0]];
 
 var width = window.innerWidth;
+var colors = {
+  dead: "#DDDDDD",
+  alive: "#0000FF",
+  blank: "#FFFFFF"
+}
+
 var height = window.innerHeight;
 var canvas = document.getElementById('myCanvas');
 var context=canvas.getContext("2d");
+var runningButtonIcon = document.getElementById('runningBtnIcon');
+var running = false;
 canvas.width=width;
 canvas.height=height;
 console.log(width, height);
@@ -26,7 +34,13 @@ function initializeBoard(rows, columns){
       board[i].push(0);
     }
   }
+  acorn();
 
+  cellWidth = Math.floor(width/numCellCols);
+  cellHeight = Math.floor(height/numCellRows);
+}
+
+function acorn() {
   // acorn configuration, definitely prone to errors....
   board[39][10]=1;
   board[40][12]=1;
@@ -35,10 +49,8 @@ function initializeBoard(rows, columns){
   board[41][13]=1;
   board[41][14]=1;
   board[41][15]=1;
-
-  cellWidth = Math.floor(width/numCellCols);
-  cellHeight = Math.floor(height/numCellRows);
 }
+
 function checkerBoard(rows, cols, cellWidth, cellHeight){
   context.fillStyle="#000000";
   for(var i = 0; i < rows; i++){
@@ -51,7 +63,7 @@ function checkerBoard(rows, cols, cellWidth, cellHeight){
 }
 
 function drawInitialBoard(){
-  context.fillStyle="#0000FF";
+  context.fillStyle=colors.alive;
   for(var row = 0; row < board.length; row++){
     for(var col = 0; col < board[row].length; col++){
       if(board[row][col]){
@@ -63,9 +75,9 @@ function drawInitialBoard(){
 
 function updateCell(row, col, alive){
   if(alive){
-    context.fillStyle="#0000FF";
+    context.fillStyle=colors.alive;
   }else{
-    context.fillStyle="#FFFFFF";
+    context.fillStyle=colors.dead;
   }
   context.fillRect(cellWidth*row, cellHeight*col, cellWidth, cellHeight)
 }
@@ -90,6 +102,7 @@ function neighbors(board, row, col) {
 }
 
 function tick(){
+  // deep copy board
   var nextBoard = JSON.parse(JSON.stringify(board));
   for(var row = 0; row < board.length; row++){
     for(var col = 0; col < board[row].length; col++){
@@ -118,9 +131,22 @@ function tick(){
 
 function infinite(){
   setTimeout(function(){
+    if(running){
       tick();
-      infinite();
-    }, 100);
+    }
+    infinite();
+  }, 100);
+}
+
+function runningButtonClick(){
+  console.log("Toggle running!");
+  running = !running;
+  if(running){
+    runningButtonIcon.className="glyphicon glyphicon-pause"
+  }else{
+    runningButtonIcon.className="glyphicon glyphicon-play"
+  }
+
 }
 
 //initialize board and set width and height
