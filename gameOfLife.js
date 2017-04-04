@@ -17,6 +17,8 @@ var cellWidth = Math.floor(width/numCellCols);
 var cellHeight = Math.floor(height/numCellRows);
 
 function initializeBoard(rows, columns){
+  numCellRows = rows;
+  numCellCols = columns;
   board = [];
   for(var i = 0; i < rows; i++){
     board.push([]);
@@ -25,6 +27,7 @@ function initializeBoard(rows, columns){
     }
   }
 
+  // acorn configuration, definitely prone to errors....
   board[39][10]=1;
   board[40][12]=1;
   board[41][9]=1;
@@ -32,9 +35,7 @@ function initializeBoard(rows, columns){
   board[41][13]=1;
   board[41][14]=1;
   board[41][15]=1;
-  //[{"39":[110]},{"40":[112]},{"41":[109,110,113,114,115]}]',
-  numCellRows = board.length;
-  numCellCols = board[0].length;
+
   cellWidth = Math.floor(width/numCellCols);
   cellHeight = Math.floor(height/numCellRows);
 }

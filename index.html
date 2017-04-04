@@ -1,45 +1,36 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 </head>
 <body>
-  <canvas id="myCanvas"></canvas>
-  <script src="./gameOfLife.js"></script>
-  <script>
-    // var width = window.innerWidth;
-    // var height = window.innerHeight;
-    // var canvas = document.getElementById('myCanvas');
-    // var context=canvas.getContext("2d");
-    // canvas.width=width;
-    // canvas.height=height;
-    // console.log(width, height);
-    // var NUM_CELL_ROWS = 10;
-    // var NUM_CELL_COLS = 20;
-    // var cellWidth = Math.floor(width/NUM_CELL_COLS);
-    // var cellHeight = Math.floor(height/NUM_CELL_ROWS);
-    //
-    // function checkerBoard(rows, cols, cellWidth, cellHeight){
-    //   context.fillStyle="#000000";
-    //   for(var i = 0; i < rows; i++){
-    //     for(var j = 0; j < cols; j++){
-    //       if((i%2 == 0 && j%2 == 1) || (i%2 == 1 && j%2 == 0)){
-    //         context.fillRect(cellWidth*j, cellHeight*i, cellWidth, cellHeight)
-    //       }
-    //     }
-    //   }
-    // }
-    // function updateCell(row, col, alive){
-    //   if(alive){
-    //     context.fillStyle="#FFFFFF";
-    //   }else{
-    //     context.fillStyle="#0000FF";
-    //   }
-    //   context.fillRect(cellWidth*i, cellHeight*j, cellWidth, cellHeight)
-    // }
-    //
-    // checkerBoard(NUM_CELL_ROWS, NUM_CELL_COLS, cellWidth, cellHeight);
-
-  </script>
+  <div class="container">
+    <!-- Static navbar -->
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Conway's Game of Life</a>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <!-- <li class="active"><a href="#">Home</a></li> -->
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="http://chrissebesta.com">Chris Sebesta</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+      </nav>
+    <canvas id="myCanvas"></canvas>
+    <script src="./gameOfLife.js"></script>
+  </div>
 </body>
 </html>
 <!--
