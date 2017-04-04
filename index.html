@@ -28,7 +28,15 @@
           </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
       </nav>
-      <button id="runningBtn" class="btn btn-default" onclick="runningButtonClick()"><span id="runningBtnIcon" class="glyphicon glyphicon-play"></span><button>
+      <div class="btn-toolbar" role="toolbar" aria-label="...">
+        <div class="btn-group" role="group" aria-label="...">
+          <button id="runningBtn" class="btn btn-default" onclick="runningButtonClick()"><span id="runningBtnIcon" class="glyphicon glyphicon-play"></span></button>
+        </div>
+        <div class="btn-group" role="group" aria-label="...">
+          <button type="button" id="acorn" class="btn btn-default" onclick="acorn()">Acorn</button>
+          <button type="button" id="line" class="btn btn-default" onclick="line()">Line</button>
+        </div>
+      </div>
     <canvas id="myCanvas"></canvas>
     <script src="./gameOfLife.js"></script>
   </div>

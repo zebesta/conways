@@ -34,14 +34,27 @@ function initializeBoard(rows, columns){
       board[i].push(0);
     }
   }
-  acorn();
+  // acorn();
 
   cellWidth = Math.floor(width/numCellCols);
   cellHeight = Math.floor(height/numCellRows);
 }
 
+function resetBoard(){
+  for(var row = 0; row < board.length; row++){
+    for(var col = 0; col < board[row].length; col++){
+      if(board[row][col]){
+        updateCell(row, col, alive=true, clear=false)
+      }else{
+        updateCell(row, col, alive=false, clear=true)
+      }
+    }
+  }
+}
+
 function acorn() {
-  // acorn configuration, definitely prone to errors....
+  initializeBoard(Math.floor(height/4),Math.floor(width/4));
+  // acorn configuration, definitely prone to errors based on vancas size...
   board[39][10]=1;
   board[40][12]=1;
   board[41][9]=1;
@@ -49,6 +62,16 @@ function acorn() {
   board[41][13]=1;
   board[41][14]=1;
   board[41][15]=1;
+  resetBoard();
+}
+
+function line() {
+  initializeBoard(Math.floor(height/4),Math.floor(width/4));
+  // line configuration, prone to errors based on canvas size...
+  board[10][13]=1;
+  board[10][14]=1;
+  board[10][15]=1;
+  resetBoard();
 }
 
 function checkerBoard(rows, cols, cellWidth, cellHeight){
@@ -73,8 +96,10 @@ function drawInitialBoard(){
   }
 }
 
-function updateCell(row, col, alive){
-  if(alive){
+function updateCell(row, col, alive, clear){
+  if(clear){
+    context.fillStyle=colors.blank;
+  }else if(alive){
     context.fillStyle=colors.alive;
   }else{
     context.fillStyle=colors.dead;
@@ -110,14 +135,14 @@ function tick(){
       if(liveNeighbors == 3){
         nextBoard[row][col] = 1;
         if(board[row][col]!==nextBoard[row][col]){
-          updateCell(row, col, alive=true);
+          updateCell(row, col, alive=true, clear=false);
         }
       }else if(board[row][col] == 1 && liveNeighbors == 2){
         nextBoard[row][col] = 1;
       }else{
         nextBoard[row][col] = 0;
         if(board[row][col]!== nextBoard[row][col]){
-          updateCell(row, col, alive=false);
+          updateCell(row, col, alive=false, clear=false);
         }
       }
     }
@@ -150,7 +175,7 @@ function runningButtonClick(){
 }
 
 //initialize board and set width and height
-initializeBoard(Math.floor(height/4),Math.floor(width/4));
+acorn();
 drawInitialBoard();
 infinite();
 
