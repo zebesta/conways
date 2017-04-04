@@ -11,11 +11,33 @@ var context=canvas.getContext("2d");
 canvas.width=width;
 canvas.height=height;
 console.log(width, height);
-var NUM_CELL_ROWS = board.length;
-var NUM_CELL_COLS = board[0].length;
-var cellWidth = Math.floor(width/NUM_CELL_COLS);
-var cellHeight = Math.floor(height/NUM_CELL_ROWS);
+var numCellRows = board.length;
+var numCellCols = board[0].length;
+var cellWidth = Math.floor(width/numCellCols);
+var cellHeight = Math.floor(height/numCellRows);
 
+function initializeBoard(rows, columns){
+  board = [];
+  for(var i = 0; i < rows; i++){
+    board.push([]);
+    for(var j = 0; j < columns; j++){
+      board[i].push(0);
+    }
+  }
+
+  board[39][10]=1;
+  board[40][12]=1;
+  board[41][9]=1;
+  board[41][10]=1;
+  board[41][13]=1;
+  board[41][14]=1;
+  board[41][15]=1;
+  //[{"39":[110]},{"40":[112]},{"41":[109,110,113,114,115]}]',
+  numCellRows = board.length;
+  numCellCols = board[0].length;
+  cellWidth = Math.floor(width/numCellCols);
+  cellHeight = Math.floor(height/numCellRows);
+}
 function checkerBoard(rows, cols, cellWidth, cellHeight){
   context.fillStyle="#000000";
   for(var i = 0; i < rows; i++){
@@ -27,7 +49,7 @@ function checkerBoard(rows, cols, cellWidth, cellHeight){
   }
 }
 
-function initializeBoard(){
+function drawInitialBoard(){
   context.fillStyle="#0000FF";
   for(var row = 0; row < board.length; row++){
     for(var col = 0; col < board[row].length; col++){
@@ -48,7 +70,7 @@ function updateCell(row, col, alive){
 }
 
 
-// checkerBoard(NUM_CELL_ROWS, NUM_CELL_COLS, cellWidth, cellHeight);
+// checkerBoard(numCellRows, numCellCols, cellWidth, cellHeight);
 
 function neighbors(board, row, col) {
   var aliveNeighbors = 0;
@@ -67,6 +89,7 @@ function neighbors(board, row, col) {
 }
 
 function tick(){
+  console.log("Starting tick!")
   var nextBoard = JSON.parse(JSON.stringify(board));
   for(var row = 0; row < board.length; row++){
     for(var col = 0; col < board[row].length; col++){
@@ -88,6 +111,7 @@ function tick(){
   }
   // update global board
   board = nextBoard;
+  console.log("UPDATING!")
   return board;
 }
 
@@ -97,10 +121,11 @@ function infinite(){
   setTimeout(function(){
       tick();
       infinite();
-    }, 1000);
+    }, 100);
 }
 
-initializeBoard();
+initializeBoard(100,100);
+drawInitialBoard();
 infinite();
 
 // Any live cell with fewer than two live neighbours dies, as if caused by underpopulation.
