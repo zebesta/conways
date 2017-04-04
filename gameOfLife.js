@@ -74,17 +74,6 @@ function line() {
   resetBoard();
 }
 
-function checkerBoard(rows, cols, cellWidth, cellHeight){
-  context.fillStyle="#000000";
-  for(var i = 0; i < rows; i++){
-    for(var j = 0; j < cols; j++){
-      if((i%2 == 0 && j%2 == 1) || (i%2 == 1 && j%2 == 0)){
-        context.fillRect(cellWidth*j, cellHeight*i, cellWidth, cellHeight)
-      }
-    }
-  }
-}
-
 function drawInitialBoard(){
   context.fillStyle=colors.alive;
   for(var row = 0; row < board.length; row++){
@@ -106,9 +95,6 @@ function updateCell(row, col, alive, clear){
   }
   context.fillRect(cellWidth*row, cellHeight*col, cellWidth, cellHeight)
 }
-
-
-// checkerBoard(numCellRows, numCellCols, cellWidth, cellHeight);
 
 function neighbors(board, row, col) {
   var aliveNeighbors = 0;
