@@ -62,9 +62,9 @@ function drawInitialBoard(){
 
 function updateCell(row, col, alive){
   if(alive){
-    context.fillStyle="#FFFFFF";
-  }else{
     context.fillStyle="#0000FF";
+  }else{
+    context.fillStyle="#FFFFFF";
   }
   context.fillRect(cellWidth*row, cellHeight*col, cellWidth, cellHeight)
 }
@@ -89,7 +89,6 @@ function neighbors(board, row, col) {
 }
 
 function tick(){
-  console.log("Starting tick!")
   var nextBoard = JSON.parse(JSON.stringify(board));
   for(var row = 0; row < board.length; row++){
     for(var col = 0; col < board[row].length; col++){
@@ -103,7 +102,7 @@ function tick(){
         nextBoard[row][col] = 1;
       }else{
         nextBoard[row][col] = 0;
-        if(board[row][col]!==nextBoard[row][col]){
+        if(board[row][col]!== nextBoard[row][col]){
           updateCell(row, col, alive=false);
         }
       }
@@ -111,7 +110,6 @@ function tick(){
   }
   // update global board
   board = nextBoard;
-  console.log("UPDATING!")
   return board;
 }
 
@@ -124,7 +122,8 @@ function infinite(){
     }, 100);
 }
 
-initializeBoard(100,100);
+//initialize board and set width and height
+initializeBoard(Math.floor(height/4),Math.floor(width/4));
 drawInitialBoard();
 infinite();
 
